@@ -9,10 +9,6 @@
   $sqlRarity = "SELECT * FROM rarity";
   $rarityQuery = $db->query($sqlRarity);
 
-  $expansionMatch = 1;
-  $colourMatch = 1;
-  $rarityMatch = 1;
-
  ?>
 
  <!-- Values are expansion IDs -->
@@ -36,8 +32,7 @@
                  <li class="list-group-item">
                   <div id="filters">
                    <div id="expansion">
-                     <input type="checkbox" value="<?=$expansion['id'];?>" id="expansion" <?=((isset($eLink) && $eLink != '' && $eLink == $expansionMatch)?'checked="checked"':'');?>> <?=$expansion['expansion'];?>
-                     <?php $expansionMatch++; ?>
+                     <input type="checkbox" class="expansion" value="<?=$expansion['id'];?>" id="expansion"> <?=$expansion['expansion'];?>
                    </div>
                   </div>
                  </li>
@@ -59,8 +54,7 @@
                  <li class="list-group-item">
                   <div id="filters">
                    <div id="colour">
-                     <input type="checkbox" value="<?=$colour['id'];?>" id="colour" <?=((isset($cLink) && $cLink != '' && $cLink == $colourMatch)?'checked="checked"':'');?>> <?=$colour['colour'];?>
-                     <?php $colourMatch++; ?>
+                     <input type="checkbox" class="colour" value="<?=$colour['id'];?>" id="colour"> <?=$colour['colour'];?>
                    </div>
                   </div>
                  </li>
@@ -82,8 +76,7 @@
                  <li class="list-group-item">
                   <div id="filters">
                    <div id="rarity">
-                     <input type="checkbox" value="<?=$rarity['id'];?>" id="rarity" <?=((isset($rLink) && $rLink != '' && $rLink == $rarityMatch)?'checked="checked"':'');?>> <?=$rarity['rarity'];?>
-                     <?php $rarityMatch++; ?>
+                     <input type="checkbox" class="rarity" value="<?=$rarity['id'];?>" id="rarity"> <?=$rarity['rarity'];?>
                    </div>
                   </div>
                  </li>
@@ -108,15 +101,6 @@
           filters[this.id] = checkedVals;
       });
 
-      var pLink = "<?=$pLink;?>";
-      filters['page'] = pLink;
-      var eLink = "<?=$eLink;?>";
-      filters['expansion'] = eLink;
-      var cLink = "<?=$cLink;?>";
-      filters['colour'] = cLink;
-      var rLink = "<?=$rLink;?>";
-      filters['rarity'] = rLink;
-
       $('#filterValues').text(JSON.stringify(filters));
 
       jQuery.ajax({
@@ -133,6 +117,7 @@
     }
 
     var filterChanged = function() {
+
         var filters = {};
         $('#filters div').each(function() {
             var checkedVals = [];
@@ -161,7 +146,16 @@
 
       $("#filters input").each(function() {
           //jQuery click events ensure cross-browser support
-          $(this).on("click", filterChanged);
+          $(this).on("click", flim);
       });
     });
+
+    var flim = function() {
+      var c = $(this).attr('id');
+      console.log(c);
+      $("." + c).prop('checked', false);
+      $(this).prop('checked', true);
+      filterChanged();
+    };
+
 </script>

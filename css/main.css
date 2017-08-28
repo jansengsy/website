@@ -42,8 +42,8 @@ body{
 }
 
 .img-thumb{
-  width: auto;
-  height: 300px;
+  width: 100%;
+  height: auto;
 }
 
 #footer{
@@ -90,6 +90,7 @@ img.details{
 .price {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 90%;
+  margin: 10px;
 }
 
 .product-add-button {
@@ -184,7 +185,10 @@ a:hover, a:visited, a:link, a:active{
 }
 
 .product-title {
-  max-width: 250px;
+  max-width: 100%;
+  margin: 20px;
+  margin-top: 0;
+  height: 60px;
 }
 
 .advanced-search {

@@ -1,22 +1,9 @@
 <?php
+
   require_once 'core\init.php';
   include 'includes\head.php';
   include 'includes\navigation.php';
-  include 'includes\pagenumberslogic.php';
 
-  $sql = "SELECT * FROM products WHERE deleted = 0";
-  $productName = ((isset($_POST['productName']) && $_POST['productName'] != '')?sanitize($_POST['productName']):'');
-  $price_sort = ((isset($_POST['priceSort']) && $_POST['priceSort'] != '')?sanitize($_POST['priceSort']):'');
-
-  if($productName != ''){
-    $sql .= " AND title LIKE '%{$productName}%'";
-  }
-
-  if($price_sort != ''){
-    $sql .= " ORDER BY price";
-  }
-
-  $pquery = $db->query($sql);
 ?>
 
       <!-- Main content -->
@@ -48,7 +35,6 @@
 
         <!-- Products -->
         <div class="row" id="cards"></div>
-        
       </div>
 
       <!-- Page number -->
