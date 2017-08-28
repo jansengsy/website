@@ -10,7 +10,6 @@
   $dissabledL = '';
   $dissabledR = '';
   $p = 0;
-  $pageNumber = 1;
 
   $sql = "SELECT * FROM products WHERE deleted = 0";
 
@@ -18,6 +17,7 @@
   $colour_id = ((isset($_POST['colour']) && $_POST['colour'] != '')?$_POST['colour']:'');
   $rarity_id = ((isset($_POST['rarity']) && $_POST['rarity'] != '')?$_POST['rarity']:'');
   $product_name = ((isset($_POST['productName']) && $_POST['productName'] != '')?$_POST['productName']:'');
+  $pageNumber = ((isset($_POST['page']) && $_POST['page'] != '1')?$_POST['page']:'1');
 
   if($expansion_id != ''){
 
@@ -48,8 +48,8 @@
     $sql .= " AND title = " . $_POST['productName'];
   }
 
-  if(isset($_GET['page']) && $_GET['page'] != ''){
-    $pageLimit = $_GET['page'] - 1;
+  if($pageNumber > 0){
+    $pageLimit = $pageNumber - 1;
     $pageLimit *= $pageSize;
   } else {
     $pageLimit = 0;
@@ -72,7 +72,21 @@
         <ul class="pagination" total-items="totalItems" items-per-page= "itemsPerPage" ng-model="currentPage">
           <li class="<?=$dissabledL;?>"><a href="<?=$leftLink;?>">&laquo;</a></li>
           <?php for($i = 1; $i <= $p; $i++) : ?>
-              <li><a href="#"><?= $i; ?></a></li>
+              <?php
+                $eLink = '';
+                if(isset($expansion_id) && $expansion_id != ''){
+                  $eLink = $expansion_id[0];
+                }
+                $cLink = '';
+                if(isset($colour_id) && $colour_id != ''){
+                  $cLink = $colour_id[0];
+                }
+                $rLink = '';
+                if(isset($rarity_id) && $rarity_id != ''){
+                  $rLink = $rarity_id[0];
+                }
+              ?>
+              <li class="gogo" value="yo"><a href="#" name="hello"><?= $i; ?></a></li>
           <?php endfor; ?>
           <li class="<?=$dissabledR;?>"><a href="<?=$rightLink;?>">&raquo;</a></li>
         </ul>
@@ -102,13 +116,45 @@
         <ul class="pagination" total-items="totalItems" items-per-page= "itemsPerPage" ng-model="currentPage">
           <li class="<?=$dissabledL;?>"><a href="<?=$leftLink;?>">&laquo;</a></li>
           <?php for($i = 1; $i <= $p; $i++) : ?>
-            <?php
-              $sbn = ((isset($productName))?'&searchBarNav=' . $productName:'');
-            ?>
-            <!-- This looks complex but it isn't - IF CAT IS SET, WE THEN CHECK FOR '', IF EITHER OF THOSE ARE TRUE, WE RETURN A '' OTHERWISE WE RETURN THE VALUE OF CAT-->
-            <li><a href=""><?= $i; ?></a></li>
+            <li><a href="#"><?= $i; ?></a></li>
           <?php endfor; ?>
           <li class="<?=$dissabledR;?>"><a href="<?=$rightLink;?>">&raquo;</a></li>
         </ul>
       </div>
     </div>
+
+<script type="text/javascript">
+
+
+  $('ul.pagination li a').on('click',function(e){
+
+    var filters = {};
+    
+    var expansion = "<?=$expansion_id;?>";
+    var colour = "<?=$colour_id;?>";
+    var rarity = "<?=$rarity_id;?>";
+    var page = 2;
+
+    alert(page);
+
+    filters['page'] = page;
+    filters['expansion'] = expansion;
+    filters['colour'] = colour;
+    filters['rarity'] = rarity;
+
+    $('#filterValues').text(JSON.stringify(filters));
+
+    jQuery.ajax({
+        url: '/eCommerce/includes/widgets/getCardsFromFilter.php',
+        method: "post",
+        data: filters,
+        success: function(resp) {
+            $("#cards").html(resp);
+        },
+        error: function() {
+            alert("Something went wrong.");
+        },
+    });
+  });
+
+</script>
