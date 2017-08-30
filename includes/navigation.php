@@ -25,14 +25,23 @@
 ?>
 
 <!-- Top Nav -->
-<nav class="navbar navbar-inverse navbar-fixed-top bg-inverse col-md-12">
-  <div class="col-md-5">
-    <div class="container container-nav">
-      <a href="index.php" class="navbar-brand">Tiki Trader</a>
-      <ul class="nav navbar-nav">
-        <!-- MTG Expansions -->
+<div class="navbar navbar-fixed-top navbar-inverse  col-md-12" role="navigation">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle Navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="index.php">Tiki Trader</a>
+
+
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">MAGIC: THE GATHERING<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle title" data-toggle="dropdown">Magic: the Gathering<span class="caret"></span></a>
           <ul class="dropdown-menu scrollable-menu" role="menu">
             <?php while($mtg = mysqli_fetch_assoc($pquery)) : ?>
               <li><a href="category.php?cat=<?=$mtg['id'];?>"><?php echo $mtg['expansion']; ?></a></li>
@@ -40,34 +49,42 @@
           </ul>
         </li>
 
-        <!-- YU-GI-OH Expansions -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">YU-GI-OH!<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle title" data-toggle="dropdown">Pokemon<span class="caret"></span></a>
           <ul class="dropdown-menu scrollable-menu" role="menu">
-            <?php while($yugioh = mysqli_fetch_assoc($pquery2)) : ?>
-              <li><a href="#"><?php echo $yugioh['expansion']; ?></a></li>
+            <?php while($pokemon = mysqli_fetch_assoc($pquery3)) : ?>
+              <li><a href="coming_soon.php"><?php echo $pokemon['expansion']; ?></a></li>
             <?php endwhile; ?>
           </ul>
         </li>
 
-        <!-- Pokemon Expansions -->
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">POKEMON<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle title" data-toggle="dropdown">Yu-Gi-Oh<span class="caret"></span></a>
           <ul class="dropdown-menu scrollable-menu" role="menu">
-            <?php while($pokemon = mysqli_fetch_assoc($pquery3)) : ?>
-              <li><a href="#"><?php echo $pokemon['expansion']; ?></a></li>
+            <?php while($yugioh = mysqli_fetch_assoc($pquery2)) : ?>
+              <li><a href="coming_soon.php"><?php echo $yugioh['expansion']; ?></a></li>
             <?php endwhile; ?>
           </ul>
         </li>
+
+        <li>
+          <a href="coming_soon.php" class="dropdown-toggle title">Accessories</a>
+        </li>
+
+        <li>
+          <a href="coming_soon.php" class="dropdown-toggle title">Sale</a>
+        </li>
+
+        <li>
+          <div>
+            <a href="#" class="search-element btn btn-md searchbtn" onclick="searchForProduct();">Search</a>
+            <input class="search-element form-control input-md" placeholder="Search for a product..." name="productName" id="searchBarNav" type="text">
+            <a class="search-cart search-element" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> (<?= $item_count; ?>) <?= money($sub_total);?></a>
+          </div>
+        </li>
       </ul>
     </div>
-  </div>
-  <div class="col-md-7">
-    <a class="pull-right col-md-1 search-cart search-element" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> (<?= $item_count; ?>) <?= money($sub_total);?></a>
-    <a href="#" class="search-element search-button pull-right col-md-1 btn btn-md" onclick="searchForProduct();">Search</a>
-    <input class="search-element pull-right col-md-9 form-control input-md" placeholder="Search for a product..." name="productName" id="searchBarNav" type="text">
-  </div>
-</nav>
+</div>
 
 <script type="text/javascript">
 

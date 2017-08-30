@@ -39,10 +39,15 @@
             <h2>Loading...</h2>
           </div>
         </div>
+
+        <?php
+          include 'includes\rightbar.php';
+          include 'includes\widgets\recent.php';
+        ?>
+        
       </div>
 
-      <!-- Page number -->
-      <?php include 'includes\rightbar.php'; ?>
+
 
 <?php
   include 'includes\footer.php';

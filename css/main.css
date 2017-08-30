@@ -130,18 +130,18 @@ img.details{
   margin-left: 20px;
 }
 
-.navbar-brand {
-  font-size: 40px !important;
-}
-
-.navbar-nav > li > a, .navbar-brand {
-    padding-top:39px !important; padding-bottom:0 !important;
-    height: 30px;
-    font-size: 16px;
-}
-
 .navbar {
   min-height:100px !important;
+}
+
+.navbar-brand {
+  font-size: 40px !important;
+  line-height: 65px;
+}
+
+.navbar-nav li a.title {
+  font-size: 20px;
+  line-height: 65px;
 }
 
 .product_button {
@@ -227,6 +227,7 @@ a:hover, a:visited, a:link, a:active{
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 30px;
+  display: inline-block;
 }
 
 .search-cart{
@@ -235,9 +236,36 @@ a:hover, a:visited, a:link, a:active{
   width: 120px;
 }
 
-.search-button{
+.searchbtn{
+  padding: 5 !important;
+  margin: 0 !important;
+  margin-left: 50px !important;
   background-color: #fff;
   color: #343434;
-  font-weight: bold;
-  font-size: 110%
+}
+
+/* COMING SOON*/
+.bgimg {
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: black;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 25px;
+}
+
+/* Position text in the middle */
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Style the <hr> element */
+hr {
+    margin: auto;
+    width: 40%;
 }
