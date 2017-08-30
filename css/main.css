@@ -222,3 +222,22 @@ a:hover, a:visited, a:link, a:active{
   overflow-y:scroll !important;
   max-height:300px !important;
 }
+
+.search-element{
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 30px;
+}
+
+.search-cart{
+  margin-top: 35px;
+  color: grey;
+  width: 120px;
+}
+
+.search-button{
+  background-color: #fff;
+  color: #343434;
+  font-weight: bold;
+  font-size: 110%
+}

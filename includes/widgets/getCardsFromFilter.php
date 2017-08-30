@@ -52,7 +52,7 @@
   }
 
   if($product_name != ''){
-    $sql .= " AND title = " . $_POST['productName'];
+    $sql .= " AND title LIKE '%$product_name%'";
   }
 
   if($pageNumber > 0){

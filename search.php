@@ -34,7 +34,11 @@
         ?>
 
         <!-- Products -->
-        <div class="row" id="cards"></div>
+        <div class="row" id="cards">
+          <div class="row" id="loader">
+            <h2>Loading...</h2>
+          </div>
+        </div>
       </div>
 
       <!-- Page number -->

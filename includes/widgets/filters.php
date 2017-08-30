@@ -133,6 +133,12 @@
             url: '/eCommerce/includes/widgets/getCardsFromFilter.php',
             method: "post",
             data: filters,
+            beforeSend: function() {
+               $('#loader').show();
+            },
+            complete: function(){
+               $('#loader').hide();
+            },
             success: function(resp) {
                 $("#cards").html(resp);
             },
@@ -146,15 +152,22 @@
 
       $("#filters input").each(function() {
           //jQuery click events ensure cross-browser support
-          $(this).on("click", flim);
+          $(this).on("click", radioCheck);
       });
     });
 
-    var flim = function() {
+    var radioCheck = function() {
       var c = $(this).attr('id');
-      console.log(c);
-      $("." + c).prop('checked', false);
-      $(this).prop('checked', true);
+
+      var checked = $(this).is(":checked");
+
+      if(!checked){
+        $("." + c).prop('checked', false);
+      }else{
+        $("." + c).prop('checked', false);
+        $(this).prop('checked', true);
+      }
+
       filterChanged();
     };
 
