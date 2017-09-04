@@ -6,7 +6,6 @@
   include 'includes\navigation.php';
 
 ?>
-
       <!-- Main content -->
       <div class="col-md-12">
 
@@ -41,6 +40,6 @@
 
       <!-- Page number -->
       <?php include 'includes\rightbar.php'; ?>
+
 <?php
   include 'includes\footer.php';
-?>

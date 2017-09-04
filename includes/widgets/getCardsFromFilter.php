@@ -6,11 +6,6 @@
     die();
   }
 
-  $aa = 0;
-  $bb = 0;
-  $cc = 0;
-
-  $pageSize = 12;
   $dissabledL = '';
   $dissabledR = '';
   $p = 0;
@@ -22,7 +17,8 @@
   $rarity_id = ((isset($_POST['rarity']) && $_POST['rarity'] != '')?$_POST['rarity']:'');
   $product_name = ((isset($_POST['productName']) && $_POST['productName'] != '')?$_POST['productName']:'');
   $pageNumber = ((isset($_POST['page']) && $_POST['page'] != '1')?$_POST['page']:'1');
-
+  $pageSize = ((isset($_POST['pageSize']) && $_POST['pageSize'] != '1')?$_POST['pageSize']:'12');
+  $sort_by = ((isset($_POST['sortBy']) && $_POST['sortBy'] != '')?$_POST['sortBy']:'');
   if($expansion_id != '' && $expansion_id[0] != 'all'){
 
     $sql .= " AND expansion = " . $expansion_id[0];
@@ -55,6 +51,24 @@
     $sql .= " AND title LIKE '%$product_name%'";
   }
 
+  if($sort_by != ''){
+    if($sort_by == 1){
+      $sql .= " ORDER BY price";
+    }
+    elseif($sort_by == 2){
+      $sql .= " ORDER BY price DESC";
+    }
+    elseif($sort_by == 3){
+      $sql .= " ORDER BY title";
+    }
+    elseif($sort_by == 4){
+      $sql .= " ORDER BY title DESC";
+    }
+    elseif($sort_by == 5){
+      $sql .= "";
+    }
+  }
+
   if($pageNumber > 0){
     $pageLimit = $pageNumber - 1;
     $pageLimit *= $pageSize;
@@ -72,19 +86,51 @@
   $sql .= " LIMIT $pageLimit,$pageSize";
   $pquery = $db->query($sql);
 
+  $data = array();
+  $data['si'] = ($pageNumber * $p) - $p;
+  $data['pages'] = $p;
+  $data['cur_page'] = $pageNumber;
+
+
 ?>
 
     <div ng-controller="pageController" class="col-sm-12">
-      <div class="container col-sm-10">
-        <ul class="pagination" total-items="totalItems" items-per-page= "itemsPerPage" ng-model="currentPage">
-          <li class="<?=$dissabledL;?>"><a href="<?=$leftLink;?>">&laquo;</a></li>
-          <?php for($i = 1; $i <= $p; $i++) : ?>
+      <div class="container col-sm-9">
+        <ul class="pagination" total-items="totalItems" items-per-page="itemsPerPage" ng-model="currentPage">
+          <li><a alt="1" href="<?=$leftLink;?>">&laquo;&laquo;</a></li>
+          <?php $limit = (($p < 5)?$p:5);?>
+          <?php for($i = 1; $i <= $limit; $i++) : ?>
               <li><a alt="<?=$i;?>" href="#"><?= $i; ?></a></li>
           <?php endfor; ?>
-          <li class="<?=$dissabledR;?>"><a href="<?=$rightLink;?>">&raquo;</a></li>
+          <li><a alt="<?= $p; ?>" href="<?=$rightLink;?>">&raquo;&raquo;</a></li>
         </ul>
       </div>
+
+      <div class="pull-right container col-sm-3">
+        <div class="dropdown-toggle btn btn-default pageNumber-dropdown">
+          <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"><?= $pageSize ;?> <b class="caret"></b></a>
+          <ul class="dropdown-menu page_size" role="menu">
+            <li><a href="#" alt="12">12 </a></li>
+            <li><a href="#" alt="24">24 </a></li>
+            <li><a href="#" alt="48">48 </a></li>
+            <li><a href="#" alt="72">72 </a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown-toggle btn btn-default pageNumber-dropdown">
+          <a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Sort By <b class="caret"></b></a>
+          <ul class="dropdown-menu sort_by" role="menu">
+            <li><a href="#" alt="1">Price: Low-High </a></li>
+            <li><a href="#" alt="2">Price: High-Low </a></li>
+            <li><a href="#" alt="3">Title: A-Z </a></li>
+            <li><a href="#" alt="4">Title: Z-A</a></li>
+            <li><a href="#" alt="5">Relevance</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
+
+
 
     <?php while($product = mysqli_fetch_assoc($pquery)) : ?>
       <div class="col-md-3 text-center">
@@ -118,6 +164,7 @@
 
 <script type="text/javascript">
 
+// page number
 $('ul.pagination li a').on('click',function(e){
 
   e.preventDefault();
@@ -126,6 +173,9 @@ $('ul.pagination li a').on('click',function(e){
   var expansion = <?= ((isset($expansion_id[0]))?$expansion_id[0]:0);?>;
   var colour = <?= ((isset($colour_id[0]))?$colour_id[0]:0);?>;
   var rarity = <?= ((isset($rarity_id[0]))?$rarity_id[0]:0);?>;
+  var pageSize = <?= ((isset($pageSize))?$pageSize:0);?>;
+  var productName = <?= ((isset($product_name[0]))?$product_name[0]:0);?>;
+  var sortBy = <?= ((isset($sort_by[0]))?$sort_by[0]:0);?>;
 
   var current_element = $(this);
   var cur_elem_content = current_element.attr("alt");
@@ -139,6 +189,118 @@ $('ul.pagination li a').on('click',function(e){
   }
   if(rarity != 0){
     filters['rarity'] = rarity;
+  }
+  if(pageSize != 0){
+    filters['pageSize'] = pageSize;
+  }
+  if(typeof productName !== 'undefined' && productName != 0){
+    filters['productName'] = productName;
+  }
+  if(sortBy != 0){
+    filters['sortBy'] = sortBy;
+  }
+
+
+  $('#filterValues').text(JSON.stringify(filters));
+
+  jQuery.ajax({
+      url: '/eCommerce/includes/widgets/getCardsFromFilter.php',
+      method: "post",
+      data: filters,
+      success: function(resp) {
+          $("#cards").html(resp);
+      },
+      error: function() {
+          alert("Something went wrong.");
+      },
+  });
+});
+
+// page size
+$('ul.page_size li a').on('click',function(e){
+
+  e.preventDefault();
+  filters = {};
+
+  var expansion = <?= ((isset($expansion_id[0]))?$expansion_id[0]:0);?>;
+  var colour = <?= ((isset($colour_id[0]))?$colour_id[0]:0);?>;
+  var rarity = <?= ((isset($rarity_id[0]))?$rarity_id[0]:0);?>;
+  var page = <?= ((isset($pageNumber[0]))?$pageNumber[0]:0);?>;
+  var productName = <?= ((isset($product_name[0]))?$product_name[0]:0);?>;
+  var sortBy = <?= ((isset($sort_by[0]))?$sort_by[0]:0);?>;
+
+  var current_element = $(this);
+  var cur_elem_content = current_element.attr("alt");
+  filters['pageSize'] = cur_elem_content;
+
+  if(expansion != 0){
+    filters['expansion'] = expansion;
+  }
+  if(colour != 0){
+    filters['colour'] = colour;
+  }
+  if(rarity != 0){
+    filters['rarity'] = rarity;
+  }
+  if(sortBy != 0){
+    filters['sortBy'] = sortBy;
+  }
+  if(page != 0){
+    filters['page'] = page;
+  }
+  if(productName != 0){
+    filters['productName'] = productName;
+  }
+
+  $('#filterValues').text(JSON.stringify(filters));
+
+  jQuery.ajax({
+      url: '/eCommerce/includes/widgets/getCardsFromFilter.php',
+      method: "post",
+      data: filters,
+      success: function(resp) {
+          $("#cards").html(resp);
+      },
+      error: function() {
+          alert("Something went wrong.");
+      },
+  });
+});
+
+// sort by
+$('ul.sort_by li a').on('click',function(e){
+
+  e.preventDefault();
+  filters = {};
+
+  var expansion = <?= ((isset($expansion_id[0]))?$expansion_id[0]:0);?>;
+  var colour = <?= ((isset($colour_id[0]))?$colour_id[0]:0);?>;
+  var rarity = <?= ((isset($rarity_id[0]))?$rarity_id[0]:0);?>;
+  var page = <?= ((isset($pageNumber[0]))?$pageNumber[0]:0);?>;
+  var productName = <?= ((isset($product_name[0]))?$product_name[0]:0);?>;
+  var pageSize = <?= ((isset($pageSize))?$pageSize:0);?>;
+
+  var current_element = $(this);
+  var cur_elem_content = current_element.attr("alt");
+  filters['sortBy'] = cur_elem_content;
+
+  if(expansion != 0){
+    filters['expansion'] = expansion;
+  }
+  if(colour != 0){
+    filters['colour'] = colour;
+  }
+  if(rarity != 0){
+    filters['rarity'] = rarity;
+  }
+  if(page != 0){
+    filters['page'] = page;
+  }
+  if(typeof productName !== 'undefined' && productName != 0){
+    filters['productName'] = productName;
+  }
+  if(pageSize != 0){
+    filters['pageSize'] = pageSize;
   }
 
   $('#filterValues').text(JSON.stringify(filters));

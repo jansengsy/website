@@ -25,66 +25,76 @@
 ?>
 
 <!-- Top Nav -->
-<div class="navbar navbar-fixed-top navbar-inverse  col-md-12" role="navigation">
+<nav class="navbar navbar-fixed-top navbar-inverse" role="navigation">
+
+  <div class="col-md-12">
     <div class="navbar-header">
+
+      <a class="navbar-brand" href="index.php">Tiki Trader</a>
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
         <span class="sr-only">Toggle Navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
+      <a class="navbar-cart search-cart" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> (<?= $item_count; ?>) My Cart: <?= money($sub_total);?></a>
+      <a class="navbar-cart search-cart" href="user_account.php"><span class="glyphicon glyphicon-user"></span> Account</a>
 
-      <a class="navbar-brand" href="index.php">Tiki Trader</a>
-
+      <div class="input-group stylish-input-group">
+          <input type="text" name="productName" id="searchBarNav" class="form-control"  placeholder="Search" >
+          <span class="input-group-addon">
+              <button type="submit" onclick="searchForProduct();">
+                  <span class="glyphicon glyphicon-search"></span>
+              </button>
+          </span>
+      </div>
 
     </div>
+  </div>
+
+  <div class="col-md-12">
     <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle title" data-toggle="dropdown">Magic: the Gathering<span class="caret"></span></a>
-          <ul class="dropdown-menu scrollable-menu" role="menu">
-            <?php while($mtg = mysqli_fetch_assoc($pquery)) : ?>
-              <li><a href="category.php?cat=<?=$mtg['id'];?>"><?php echo $mtg['expansion']; ?></a></li>
-            <?php endwhile; ?>
-          </ul>
-        </li>
+      <div class="categories">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle title-second" data-toggle="dropdown">Magic: the Gathering<span class="caret"></span></a>
+            <ul class="dropdown-menu scrollable-menu" role="menu">
+              <?php while($mtg = mysqli_fetch_assoc($pquery)) : ?>
+                <li><a href="category.php?cat=<?=$mtg['id'];?>"><?php echo $mtg['expansion']; ?></a></li>
+              <?php endwhile; ?>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle title-second" data-toggle="dropdown">Pokemon<span class="caret"></span></a>
+            <ul class="dropdown-menu scrollable-menu" role="menu">
+              <?php while($pokemon = mysqli_fetch_assoc($pquery3)) : ?>
+                <li><a href="coming_soon.php"><?php echo $pokemon['expansion']; ?></a></li>
+              <?php endwhile; ?>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle title" data-toggle="dropdown">Pokemon<span class="caret"></span></a>
-          <ul class="dropdown-menu scrollable-menu" role="menu">
-            <?php while($pokemon = mysqli_fetch_assoc($pquery3)) : ?>
-              <li><a href="coming_soon.php"><?php echo $pokemon['expansion']; ?></a></li>
-            <?php endwhile; ?>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle title-second" data-toggle="dropdown">Yu-Gi-Oh<span class="caret"></span></a>
+            <ul class="dropdown-menu scrollable-menu" role="menu">
+              <?php while($yugioh = mysqli_fetch_assoc($pquery2)) : ?>
+                <li><a href="coming_soon.php"><?php echo $yugioh['expansion']; ?></a></li>
+              <?php endwhile; ?>
+            </ul>
+          </li>
 
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle title" data-toggle="dropdown">Yu-Gi-Oh<span class="caret"></span></a>
-          <ul class="dropdown-menu scrollable-menu" role="menu">
-            <?php while($yugioh = mysqli_fetch_assoc($pquery2)) : ?>
-              <li><a href="coming_soon.php"><?php echo $yugioh['expansion']; ?></a></li>
-            <?php endwhile; ?>
-          </ul>
-        </li>
+          <li class="dropdown">
+            <a href="coming_soon.php" class="dropdown-toggle title-second">Accessories</a>
+          </li>
 
-        <li>
-          <a href="coming_soon.php" class="dropdown-toggle title">Accessories</a>
-        </li>
-
-        <li>
-          <a href="coming_soon.php" class="dropdown-toggle title">Sale</a>
-        </li>
-
-        <li>
-          <div>
-            <a href="#" class="search-element btn btn-md searchbtn" onclick="searchForProduct();">Search</a>
-            <input class="search-element form-control input-md" placeholder="Search for a product..." name="productName" id="searchBarNav" type="text">
-            <a class="search-cart search-element" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> (<?= $item_count; ?>) <?= money($sub_total);?></a>
-          </div>
-        </li>
-      </ul>
+          <li class="dropdown">
+            <a href="coming_soon.php" class="dropdown-toggle title-second">Sale</a>
+          </li >
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
+</nav>
+
 
 <script type="text/javascript">
 

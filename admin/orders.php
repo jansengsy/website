@@ -10,7 +10,7 @@
 
   // Complete order
   if(isset($_GET['complete']) && $_GET['complete'] == 1){
-    $cat_id = sanitize((int)$_GET['cart_id']);
+    $cart_id = sanitize((int)$_GET['cart_id']);
     $db->query("UPDATE cart SET shipped = 1 WHERE id = '{$cart_id}'");
     $_SESSION['success_flash'] = "The order has been completed.";
     header('Location: index.php');

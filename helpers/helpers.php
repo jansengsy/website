@@ -25,8 +25,24 @@
     header('Location: index.php');
   }
 
+  function user_login($user_id){
+    $_SESSION['User'] = $user_id;
+    global $db;
+    $date = date("Y-m-d H:i:s");
+    $db->query("UPDATE customers SET last_login = '$date' WHERE email = '$user_id'");
+    $_SESSION['success_flash'] = 'You are now logged in!';
+    redirect('user_account.php');
+  }
+
   function is_logged_in(){
     if(isset($_SESSION['SBUser']) && $_SESSION['SBUser'] > 0){
+      return true;
+    }
+    return  false;
+  }
+
+  function is_logged_in_customer(){
+    if(isset($_SESSION['User']) && $_SESSION['User'] != ''){
       return true;
     }
     return  false;
@@ -53,5 +69,23 @@
 
   function pretty_date($date){
     return date("M d, Y h:i A", strtotime($date));
+  }
+
+  function redirect($url)
+  {
+    if (!headers_sent())
+    {
+        header('Location: '.$url);
+        exit;
+        }
+    else
+        {
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="'.$url.'";';
+        echo '</script>';
+        echo '<noscript>';
+        echo '<meta http-equiv="refresh" content="0;url='.$url.'" />';
+        echo '</noscript>'; exit;
+    }
   }
  ?>

@@ -9,6 +9,8 @@
         <h1>COMING SOON</h1>
         <hr>
         <p>Tiki Trader</p>
+
+        <p><a href="index.php">[Return to Tiki Trader]</a></p>
       </div>
     </div>
   </body>
