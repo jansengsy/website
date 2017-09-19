@@ -9,14 +9,14 @@
   $token = $_POST['stripeToken'];
 
   // Get the rest of the post data
-  $full_name = sanitize($_POST['full_name']);
-  $email = sanitize($_POST['email']);
-  $street = sanitize($_POST['street']);
-  $street2 = sanitize($_POST['street2']);
-  $city = sanitize($_POST['city']);
-  $county = sanitize($_POST['county']);
-  $post_code = sanitize($_POST['post_code']);
-  $country = sanitize($_POST['country']);
+  $full_name = sanitize($_POST['final_full_name']);
+  $email = sanitize($_POST['final_email']);
+  $street = sanitize($_POST['final_street1']);
+  $street2 = sanitize($_POST['final_street2']);
+  $city = sanitize($_POST['final_city']);
+  $county = sanitize($_POST['final_county']);
+  $post_code = sanitize($_POST['final_post_code']);
+  $country = sanitize($_POST['final_country']);
 
   $sub_total = sanitize($_POST['sub_total']);
   $cart_id = sanitize($_POST['cart_id']);

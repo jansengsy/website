@@ -72,29 +72,14 @@
                     <input type="number" class="form-control" id="quantity" name="quantity" value="1" min="0" max="<?= $product['quantity']; ?>">
                   </div>
                 </div>
-                <!--Card Cndition-->
-                <div class="form-group">
-                  <div class="col-xs-9">
-                    <!--
-                    <label for="condition">Condition:</label>
-                    <p><b>Condition: <?= $state['state']; ?></b></p>
-                    <select class="form-control" id="size" name="size">
-                      <option value=""></option>
-                      <option value="Mint/Near Mint">Mint/Near Mint</option>
-                      <option value="Lightly Played">Lightly Played</option>
-                      <option value="Heavily Played">Heavily Played</option>
-                    </select>
-                  -->
-                  </div>
-                </div>
               </form>
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="closeModal()">Close</button>
-        <button type="button" class="btn btn-warning" onclick="add_to_cart();return false;"><span class="glyphicon glyphicon-shopping-cart"></span>Add To Cart</button>
+        <button type="button" class="btn btn-default website-secondary-button" onclick="closeModal()">Close</button>
+        <button type="button" class="btn btn-warning website-action-button" onclick="add_to_cart();return false;"><span class="glyphicon glyphicon-shopping-cart"></span>Add To Cart</button>
       </div>
     </div>
   </div>

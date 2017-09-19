@@ -9,10 +9,18 @@
   $sqlRarity = "SELECT * FROM rarity";
   $rarityQuery = $db->query($sqlRarity);
 
+  $exp = '';
+
+  if(isset($_GET['exp']) && $_GET['exp'] != ''){
+    $exp = $_GET['exp'];
+  }
+
  ?>
 
  <!-- Values are expansion IDs -->
  <div id="">
+
+        <input type="hidden" name="expansion" id="expansion" value="<?=$exp;?>">
 
          <div class="panel-heading search-panel">
            <h3 class="search-panel-heading-text">Advanced Search:</h3>
@@ -100,6 +108,10 @@
           });
           filters[this.id] = checkedVals;
       });
+
+      if (document.getElementById("expansion").value != '') {
+        filters['expansion'] = document.getElementById("expansion").value;
+      }
 
       $('#filterValues').text(JSON.stringify(filters));
 

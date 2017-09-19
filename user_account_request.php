@@ -231,7 +231,7 @@
             <?php endwhile; ?>
           </tbody>
         </table>
-        <a href="user_account.php" class="pull-right btn btn-default btn-lg" style="margin-top : 20px;">Return to Account</a>
+        <a href="user_account.php" class="pull-right btn btn-lg website-secondary-button" style="margin-top : 20px;">Return to Account</a>
       </div>
     <?php elseif($request == "address"): ?>
 
@@ -284,10 +284,10 @@
             <input class="form-check-input" id="terms" name="terms" type="checkbox"> I confirm that I have read the terms and conditions*
           </div>
           <div class="col-md-12">
-            <input type="submit" name="" value="Update Address" class="btn btn-success">
+            <input type="submit" name="" value="Update Address" class="btn website-action-button">
           </div>
         </form>
-        <a href="user_account.php" class="pull-right btn btn-default btn-lg" style="margin-top : 20px;">Return to Account</a>
+        <a href="user_account.php" class="pull-right btn btn-lg website-secondary-button" style="margin-top : 20px;">Return to Account</a>
       </div>
     <?php elseif($request == "details"): ?>
 
@@ -322,11 +322,11 @@
           <div class="form-group col-md-4">
           </div>
           <div class="col-md-12">
-            <input type="submit" name="" value="Update Email" class="btn btn-success">
+            <input type="submit" name="" value="Update Email" class="btn website-action-button">
           </div>
 
         </form>
-        <a href="user_account.php" class="pull-right btn btn-default btn-lg" style="margin-top : 20px;">Return to Account</a>
+        <a href="user_account.php" class="pull-right btn btn-lg website-secondary-button" style="margin-top : 20px;">Return to Account</a>
       </div>
     <?php elseif($request == "pass"): ?>
       <div class="col-md-10" style="margin-top: 30px;">
@@ -353,11 +353,11 @@
           <div class="form-group col-md-4">
           </div>
           <div class="col-md-12">
-            <input type="submit" name="" value="Update Password" class="btn btn-success">
+            <input type="submit" name="" value="Update Password" class="btn website-action-button">
           </div>
 
         </form>
-        <a href="user_account.php" class="pull-right btn btn-default btn-lg" style="margin-top : 20px;">Return to Account</a>
+        <a href="user_account.php" class="pull-right btn website-secondary-button btn-lg" style="margin-top : 20px;">Return to Account</a>
       </div>
     <?php endif; ?>
     <?php include 'includes\rightbar.php'; ?>

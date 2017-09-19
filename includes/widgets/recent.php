@@ -30,7 +30,9 @@
         <?php while($product = mysqli_fetch_assoc($pquery)) : ?>
           <li>
             <div class="col-md-3 text-center product-panel">
-              <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb-top-sellers"/>
+              <form class="" action="individual_product.php" method="post">
+                <button class="img-wrap" type="submit" name="title" value="<?= $product['title']; ?>"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb-top-sellers"/></button>
+              </form>
               <div class="info-container col-sm-12">
                 <p class="product-title text-center"><br>MAGIC: THE GATHERING <?php echo $product['title']; ?></p>
               </div>
@@ -51,7 +53,7 @@
     moveSlides: 1,
     auto: true,
     autoControls: true,
-    pause: 4000,
+    pause: 6000,
     /* This allows a constant movement
     ticker: true,
     speed: 20000*/

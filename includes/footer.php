@@ -1,6 +1,50 @@
 </div>
 
-<footer class="text-center footer" id="footer">&copy; Copyright 2017 Trading Post</footer>
+<div class="col-md-12 col-sm-12 footer-container">
+
+  <div class="col-md-12 col-sm-12" style="margin-bottom: 15px; margin-top:15px;">
+    <footer class="text-center footer" id="footer">&copy; Copyright 2017 Trading Post</footer>
+  </div>
+
+  <div class="col-md-3 col-sm-3">
+    <?php include 'includes\rightbar.php'; ?>
+  </div>
+
+  <div class="col-md-6 col-sm-6">
+    <div class="col-md-4 col-sm-4">
+      <h3>Tiki Trader</h3>
+      <ul>
+        <li><a href="#">Shop</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <h3>Help</h3>
+      <ul>
+        <li><a href="#">Delivery</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms and Conditions</a></li>
+      </ul>
+    </div>
+    <div class="col-md-4 col-sm-4">
+      <h3>Products</h3>
+      <ul>
+        <li><a href="#">Magic: the Gathering</a></li>
+        <li><a href="#">Yu-Gi-Oh!</a></li>
+        <li><a href="#">Pokemon</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-3 col-sm-3">
+    <?php include 'includes\rightbar.php'; ?>
+  </div>
+
+  <div class="col-md-1 col-sm-1">
+    <?php include 'includes\rightbar.php'; ?>
+  </div>
+</div>
 
 <script type="text/javascript">
 

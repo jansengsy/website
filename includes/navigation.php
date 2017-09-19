@@ -37,7 +37,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-cart search-cart" href="cart.php"><span class="glyphicon glyphicon-shopping-cart"></span> (<?= $item_count; ?>) My Cart: <?= money($sub_total);?></a>
+      <a class="navbar-cart search-cart" href="checkout.php"><span class="glyphicon glyphicon-shopping-cart"></span> (<?= $item_count; ?>) My Cart: <?= money($sub_total);?></a>
       <a class="navbar-cart search-cart" href="user_account.php"><span class="glyphicon glyphicon-user"></span> Account</a>
 
       <div class="input-group stylish-input-group">
@@ -60,7 +60,7 @@
             <a href="#" class="dropdown-toggle title-second" data-toggle="dropdown">Magic: the Gathering<span class="caret"></span></a>
             <ul class="dropdown-menu scrollable-menu" role="menu">
               <?php while($mtg = mysqli_fetch_assoc($pquery)) : ?>
-                <li><a href="category.php?cat=<?=$mtg['id'];?>"><?php echo $mtg['expansion']; ?></a></li>
+                <li><a href="search.php?exp=<?=$mtg['id'];?>"><?php echo $mtg['expansion']; ?></a></li>
               <?php endwhile; ?>
             </ul>
           </li>
@@ -68,7 +68,7 @@
             <a href="#" class="dropdown-toggle title-second" data-toggle="dropdown">Pokemon<span class="caret"></span></a>
             <ul class="dropdown-menu scrollable-menu" role="menu">
               <?php while($pokemon = mysqli_fetch_assoc($pquery3)) : ?>
-                <li><a href="coming_soon.php"><?php echo $pokemon['expansion']; ?></a></li>
+                <li><a id="myLink"><?php echo $pokemon['expansion']; ?></a></li>
               <?php endwhile; ?>
             </ul>
           </li>
@@ -119,5 +119,14 @@
             },
         });
     };
+
+    $('#myLink').click(function(){
+      test();
+      return false;
+    });
+
+    function test(){
+      alert("test");
+    }
 
 </script>

@@ -3,6 +3,6 @@
   session_start();
   session_unset();
   session_destroy();
-  $_SESSION['success_flash'] = 'You have been securely logged out.';
-  header('Location: index.php');
+  $_SESSION['success_flash'] = 'You have successfully logged out.';
+  header('Location: user_account.php');
  ?>

@@ -4,6 +4,7 @@
   include 'includes\head.php';
   include 'includes\navigation.php';
 
+  $test = "please print test!";
 ?>
 
       <!-- Main content -->
@@ -44,7 +45,7 @@
           include 'includes\rightbar.php';
           include 'includes\widgets\recent.php';
         ?>
-        
+
       </div>
 
 

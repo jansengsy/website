@@ -1,5 +1,114 @@
 /* Remember about the '!important' tag*/
 
+.footer-container {
+   margin-top:20px;
+   background-color: #343434;
+   color: #fff;
+}
+
+.shop-now {
+  width: 200px;
+}
+
+.welcome-header {
+  font-size: 72px;
+  color: #343434;
+  font-family: "Helvetica", Helvetica, monospace !important;
+}
+
+.welcome-message {
+  margin-top: 15px;
+  font-size: 24px;
+  color: #343434;
+  font-family: "Helvetica", Helvetica, monospace !important;
+}
+
+.welcome-image {
+  height: 500px;
+  width: auto;
+}
+
+.banner-ad-slider-container {
+  margin-top: 50px !important;
+}
+
+.checkout-subtotal{
+  background-color: #d3d3d3;
+}
+
+.img-thumb-top-sellers{
+  width: 50%;
+  height: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+}
+
+.img-main{
+  height: 50%;
+  width: 50%;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 15%;
+  margin-bottom: 25%;
+}
+
+.img-wrap{
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: inherit;
+}
+
+.solo-product-details {
+    margin-bottom: 150px;
+}
+
+.website-action-button {
+  background-color: #343434;
+  border-radius: 0;
+  border-color: #343434;
+  font-family: "Helvetica", Helvetica, monospace !important;
+  color: #fff;
+}
+
+.website-secondary-button {
+  background-color: #d3d3d3;
+  border-radius: 0;
+  border-color: #d3d3d3;
+  font-family: "Helvetica", Helvetica, monospace !important;
+  color: black;
+}
+
+.website-action-button:hover, .website-action-button:focus, .website-action-button:active, .website-action-button.active, .open>.dropdown-toggle.website-action-button {
+    color: #fff;
+    background-color: #343434;
+    border-color: black; /*set the color you want here*/
+}
+
+.website-secondary-button:hover, .website-secondary-button:focus, .website-secondary-button:active, .website-secondary-button.active, .open>.dropdown-toggle.website-secondary-button {
+    color: #fff;
+    background-color: #343434;
+    border-color: black; /*set the color you want here*/
+}
+
+.checkout-controls {
+  margin-top: 40px;
+}
+
+.checkout-button{
+  margin-left: 15px;
+  min-width: 100px;
+}
+
+.checkout-top-bar{
+  margin-bottom: 25px;
+  margin-top: 25px;
+}
+
+.checkout-address-label{
+  margin-top: 10px;
+}
+
 body{
   padding-top:135px;
   padding-bottom: 30px;
@@ -39,15 +148,19 @@ body{
 
 .product-panel {
   min-width: 250px; /*THIS STOPS THE COLUMNS FROM OVERLAPPING!!*/
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .img-thumb{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 40px;
+  padding-right: 40px;
   width: 100%;
   height: auto;
 }
 
 #footer{
-  margin-top:50px;
 
   /*.footer {
     position: fixed;
@@ -59,11 +172,13 @@ body{
 img.details{
   width: 100%;
   margin: 15px auto;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .stock-txt{
   font-size: 80%;
-  color: orange;
+  color: #343434;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .scrollable-menu {
@@ -84,7 +199,7 @@ img.details{
 }
 
 .btn {
-  font-family: Averia Serif-Libre;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .price {
@@ -128,20 +243,24 @@ img.details{
 
 .search-bar {
   margin-left: 20px;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .navbar {
   min-height:100px !important;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .navbar-brand {
   font-size: 40px !important;
   line-height: 65px;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .navbar-nav li a.title {
   font-size: 20px;
   line-height: 65px;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .navbar .navbar-nav {
@@ -154,6 +273,7 @@ img.details{
 
 .categories {
     margin: 0 auto;
+    font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .navbar .navbar-search {
@@ -187,7 +307,6 @@ img.details{
 
 .checkout-button{
   margin-top: 25px;
-  margin-right: 15px;
 }
 
 .navbar-nav{
@@ -196,11 +315,12 @@ img.details{
     display: table;
     table-layout: fixed;
     margin-top: 20px;
+    font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .pageNumber-dropdown {
   margin-top: 20px;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica", Helvetica, monospace !important;
   margin-left: 20px;
 }
 
@@ -217,6 +337,7 @@ a:hover, a:visited, a:link, a:active{
   margin: 20px;
   margin-top: 0;
   height: 60px;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .advanced-search {
@@ -243,6 +364,7 @@ a:hover, a:visited, a:link, a:active{
 
 .page-title {
   color: #ffffff;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .search-panel {
@@ -250,6 +372,7 @@ a:hover, a:visited, a:link, a:active{
   margin-top: 20px;
   color: #ffffff;
   border-radius: 0px;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .collapse-body{
@@ -271,6 +394,7 @@ a:hover, a:visited, a:link, a:active{
   float: right !important;
   margin-top: 35px;
   margin-right: 10px;
+  font-family: "Helvetica", Helvetica, monospace !important;
 }
 
 .searchbtn{
@@ -352,4 +476,8 @@ hr {
 .stylish-input-group button{
     border:0;
     background:transparent;
+}
+
+.cart-container{
+  margin-top: 25px;
 }

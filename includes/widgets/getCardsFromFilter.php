@@ -19,6 +19,7 @@
   $pageNumber = ((isset($_POST['page']) && $_POST['page'] != '1')?$_POST['page']:'1');
   $pageSize = ((isset($_POST['pageSize']) && $_POST['pageSize'] != '1')?$_POST['pageSize']:'12');
   $sort_by = ((isset($_POST['sortBy']) && $_POST['sortBy'] != '')?$_POST['sortBy']:'');
+
   if($expansion_id != '' && $expansion_id[0] != 'all'){
 
     $sql .= " AND expansion = " . $expansion_id[0];
@@ -134,12 +135,16 @@
 
     <?php while($product = mysqli_fetch_assoc($pquery)) : ?>
       <div class="col-md-3 text-center">
-        <img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb"/>
+        <form class="" action="individual_product.php" method="post">
+          <button class="img-wrap" type="submit" name="title" value="<?= $product['title']; ?>"><img src="<?php echo $product['image']; ?>" alt="<?php echo $product['title']; ?>" class="img-thumb"/></button>
+        </form>
         <p class="product-title"><br>MAGIC: THE GATHERING <?php echo $product['title']; ?></p>
         <p class="price"><b>Up To £<?php echo $product['price']; ?></b></p>
         <div class="col-sm-2"></div>
-        <button type="button" class="col-sm-4 btn btn-sm btn-success product_button" onclick="detailsmodal(<?= $product['id']; ?>)">Buy</button>
-        <button type="button" class="col-sm-4 btn btn-sm btn-outline-secondary product_button" onclick="detailsmodal(<?= $product['id']; ?>)">Details</button>
+        <button type="button" class="col-sm-4 btn btn-sm btn-success website-action-button product_button" onclick="detailsmodal(<?= $product['id']; ?>)">Buy</button>
+        <form action="individual_product.php" method="post">
+            <button type="submit" name="title" value="<?= $product['title']; ?>" class="col-sm-4 btn btn-sm btn-outline-secondary website-secondary-button product_button">Details</button>
+        </form>
         <div class="col-sm-2"></div>
         <?php $stock = $product['quantity']; ?>
         <?php if($stock == 0): ?>

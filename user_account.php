@@ -160,7 +160,7 @@
           <p>Securely change your account password</p>
         </div>
         <hr class="col-md-12">
-        <a href="logout.php" class="pull-right btn btn-default btn-lg" style="margin-top : 20px; margin-right: -30px;">Logout</a>
+        <a href="logout.php" class="pull-right btn website-secondary-button btn-lg" style="margin-top : 20px; margin-right: -30px;">Logout</a>
       </form>
     </div>
     <?php include 'includes\rightbar.php'; ?>
@@ -249,8 +249,8 @@
             <input  class="form-check-input" id="terms" name="terms" type="checkbox"> I confirm that I have read the terms and conditions*
           </div>
           <div class="col-md-12">
-            <input type="submit" name="" value="Create Account" class="btn btn-success">
-            <a href="user_account.php" class="btn btn-default">Clear</a>
+            <input type="submit" name="" value="Create Account" class="btn website-action-button">
+            <a href="user_account.php" class="btn website-secondary-button">Clear</a>
           </div>
         </form>
       </div>
@@ -269,7 +269,7 @@
             <input class="form-control" id="password" type="password" name="password">
           </div>
           <div class="col-md-12">
-            <button class="btn btn-lg btn-success" type="submit" name="button">Login</button>
+            <button class="btn btn-lg website-action-button" type="submit" name="button">Login</button>
           </div>
         </form>
       </div>
